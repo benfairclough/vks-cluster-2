@@ -3,9 +3,9 @@ kind: Cluster
 #define the cluster
 metadata:
   #user-defined name of the cluster; string
-  name: vksclu1
+  name: vks-cluster-2
   #kubernetes namespace for the cluster; string
-  namespace: vkshome
+  namespace: vks-cluster-2
 #define the desired state of cluster
 spec:
   #specify the cluster network; required, there is no default
@@ -14,20 +14,20 @@ spec:
     services:
       #ranges of network addresses; string array
       #CAUTION: must not overlap with Supervisor
-      cidrBlocks: ["10.96.0.0/12"]
+      cidrBlocks: ["10.129.0.0/12"]
     #network ranges from which Pod networks are allocated
     pods:
       #ranges of network addresses; string array
       #CAUTION: must not overlap with Supervisor
-      cidrBlocks: ["192.168.0.0/16"]
+      cidrBlocks: ["192.169.0.0/16"]
     #domain name for services; string
     serviceDomain: "cluster.local"
   #specify the topology for the cluster
   topology:
     #name of the ClusterClass object to derive the topology
-    class: builtin-generic-v3.3.0
+    class: builtin-generic-v3.5.0
     #kubernetes version of the cluster; format is TKR NAME
-    version: v1.33.3---vmware.1-fips-vkr.1
+    version: v1.34.1+vmware.1-vkr.4
     #describe the cluster control plane
     controlPlane:
       #number of control plane nodes
@@ -41,7 +41,7 @@ spec:
         #node pool class used to create the set of worker nodes
         - class: node-pool
           #user-defined name of the node pool; string
-          name: node-pool-1
+          name: node-pool-vks-2-1
           #number of worker nodes in this pool; integer 0 or more
           replicas: 1
     #customize the cluster
